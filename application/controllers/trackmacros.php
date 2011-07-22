@@ -25,10 +25,6 @@ class Trackmacros extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        // load User model
-        $this->load->model('User_model');
-		// load session library
-        $this->load->library('session');
     }
 
     public function index()
@@ -45,16 +41,59 @@ class Trackmacros extends CI_Controller {
         $this->load->view('template', $data);
 	}
     
+    public function main_page()
+    {
+        if( $this->session->userdata('logged_in') )
+        {
+            echo 'You are logged in and you may view this lovely page.';
+        }
+        else
+        {
+            redirect('trackmacros/login');
+        }
+    }
+
     public function login()
     {
-        $data['main_content'] = 'login';
-        $this->load->view('template', $data);
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numberic|min_length[6]|xss_clean|strtolower');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|xss_clean');
+        if( $this->form_validation->run() == FALSE )
+        {
+            // hasn't been run or there are validation errors
+            $data['main_content'] = 'login';
+            $this->load->view('template', $data);
+        }
+        else
+        {
+            // everything is good - process the input and login the user
+            extract($_POST);
+            $user_id = $this->User_model->check_login($username, $password);
+
+            if( !$user_id )
+            {
+                //login failed
+                $this->session->set_flashdata('login_error', TRUE);
+                redirect('trackmacros/login');
+            }
+            else
+            {
+                //login the user
+                $this->session->set_userdata( array(
+                                'logged_in' => TRUE, 
+                                'user_id' => $user_id ) );
+
+               redirect('trackmacros/main_page');
+            }
+        }
     }
     
+    public function logout()
+    {
+        $this->session->sess_destroy();
+    }
+
     public function register()
     {
-        $this->load->library('form_validation');
-
         $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numberic|min_length[6]|xss_clean|strtolower|callback_username_not_exists');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|xss_clean');
         $this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|min_length[6]|xss_clean');
