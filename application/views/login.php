@@ -2,7 +2,6 @@
 	    <section id="mainimg">
         </section>
     	<h2>Login Required</h2>
-        <p>This page is only accessible to logged-in users with proper access privileges</p>
     <?php
 
         echo form_open('trackmacros/login');
@@ -38,7 +37,7 @@
         <li>
         <div>
             <?php
-    /*        if( $this->session->flashdata('login_error') )
+            if( $this->session->flashdata('login_error') == TRUE )
             {
                 echo 'You entered an incorrect username or password';
             }
@@ -46,7 +45,7 @@
             {
                 echo validation_errors();
             }
-    */
+    
             ?>
         </div>
         </li>
