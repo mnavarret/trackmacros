@@ -1,0 +1,397 @@
+/*
+	Name: 
+	Date: May 06 2011
+	Description: Layout for HTML5 and CSS3.
+	Version: 1.0
+	Author: Matthew Navarret
+	Author URL: http://matthew-navarret.com
+*/
+
+/* Imports */
+@import url("reset.css");
+@import url("tmforms.css");
+
+body {
+	font-size: 87.5%; /* Base font size: 14px */
+	font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	background: #380101; 
+	line-height: 1.429;
+	width: 980px;
+	margin: 70px auto;
+}
+
+a {
+	color: #FFFFFF;
+}
+
+/* Headings */
+h1 {
+	font-size: 3.571em;
+	line-height: .6;
+}
+h1 a:link, h1 a:visited {
+	color: #FFFFFF;
+	font-family: barbie, Lucida Grande, sans-serif;
+	display: block;
+	font-weight: bold;
+	margin: 0 0 .6em .2em;
+	text-decoration: none;
+	width: 250px;
+	height: 45px;
+	text-align: center;
+	text-shadow: 0 1px 1px rgba(0,0,0, .3);
+}
+
+h1 a:hover, h1 a:active {
+	color: #e73800;
+	text-shadow: 0 1px 1px rgba(0,0,0, .3);
+}
+	
+h1 strong {font-size: 0.36em; font-weight: normal;}
+
+h2 {font-size: 1.571em; color: #e73800}	/* 22px */
+h3 {font-size: 1.429em; color: #e73800}	/* 20px */
+h4 {font-size: 1.286em}	/* 18px */
+h5 {font-size: 1.143em}	/* 16px */
+h6 {font-size: 1em}		/* 14px */
+
+h2, h3, h4, h5, h6 {
+	font-weight: 400;
+	line-height: 1.1;
+	margin-bottom: .8em;
+}
+
+/* Quotes */
+blockquote {font-style: italic;}
+cite {}
+
+q {}
+
+/* Tables */
+table {margin: .5em auto 1.5em auto; width: 98%;}
+	
+	/* Thead */
+	thead th {padding: .5em .4em; text-align: left;}
+	thead td {}
+
+	/* Tbody */
+	tbody td {padding: .5em .4em;}
+	tbody th {}
+	
+	tbody .alt td {}
+	tbody .alt th {}
+	
+	/* Tfoot */
+	tfoot th {}
+	tfoot td {}
+	
+/* HTML5 tags */
+header, section, footer,
+aside, nav, article, figure {
+	display: block;
+}
+
+/***** Layout *****/
+.body {clear: both; margin: 0 auto; width: 800px;}
+.slideshow { height: 550px; width: 800px; margin: auto; }
+.slideshow img { padding: 15px; border: 1px solid #ccc; background-color: #eee; }
+img.right figure.right {float: right; margin: 0 0 2em 2em;}
+img.left, figure.left {float: right; margin: 0 0 2em 2em;}
+
+#pagetop {
+	color: #e73800;
+	display: inline;
+}
+
+#login {
+	padding: 0px 0px 8px 14px;
+}
+
+#nav {
+	margin: 0;
+	padding: 7px;
+    height: 26px;
+	background: #e73800;
+
+    border-radius: 15px 15px 0px 0px;
+	-moz-border-radius: 15px 15px 0px 0px;
+	-webkit-border-radius: 15px 15px 0px 0px;
+}
+
+#nav li {
+	float: left;
+	position: relative;
+	list-style: none;
+}
+
+/* main level link */
+#nav a {
+	color: #FFFFFF;
+	text-decoration: none;
+	display: block;
+	padding: 5px 8px 0px 8px;
+	text-shadow: 0 1px 1px rgba(0,0,0, .3);
+}
+
+#nav a:hover {
+	background: rgba(255,255,255, .2);
+	color: #FFFFFF;
+}
+
+/* currently selected */
+#nav .current a {
+	background: #FFFFFF;
+	color: #444444;
+    height: 28px;
+	text-shadow: 0 1px 0 rgba(255,255,255, 1);
+}
+/* main level link hover */
+#nav li:hover > a {
+	background: rgba(255,255,255, .5);
+    height: 28px;
+/*	text-shadow: 0 1px 0 rgba(255,255,255, 1); */
+}
+
+/* sub levels link hover */
+#nav ul li:hover a, #nav li:hover li a {
+	background: none;
+	border: none;
+	color: #000;
+}
+
+#nav ul a:hover {
+	background: #FFFFFF;
+	color: #000000;
+	text-shadow: 0 1px 1px rgba(0,0,0, .1);
+}
+
+/* dropdown */
+#nav li:hover > ul {
+	display: block;
+}
+
+/* level 2 list */
+#nav ul {
+	display: none;
+
+	margin: 0;
+	padding: 0;
+	width: 185px;
+	position: absolute;
+	top: 35px;
+	left: 0;
+	background: #dddddd;
+	border: solid 1px #b4b4b4;
+}
+
+#nav ul li {
+	float: none;
+	margin: 0;
+	padding: 0;
+}
+
+#nav ul a {
+	font-weight: normal;
+	text-shadow: 0 1px 0 #fff;
+}
+
+/* level 3+ list */
+#nav ul ul {
+	left: 181px;
+	top: -3px;
+}
+
+/* Main image */
+#mainimg {
+	background: #000000 url(../images/tm_main.png) top center;
+	overflow: hidden;
+	width: 900px;
+    height: 200px;
+	
+    border-radius: 15px 15px 15px 15px;
+	-moz-border-radius: 15px 15px 15px 15px;
+	-webkit-border-radius: 15px 15px 15px 15px;
+}
+
+/* Body */
+#content {
+	background: #ffffff;
+	margin-bottom: 10px;
+	overflow: hidden;
+	padding: 20px 40px 40px 40px;
+	width: 900px;
+	
+    border-radius: 0px 0px 15px 15px;
+	-moz-border-radius: 0px 0px 15px 15px;
+	-webkit-border-radius: 0px 0px 15px 15px;
+}
+
+/* Photos */
+#photo {
+	background: #ffffff;
+	margin-bottom: 10px;
+	overflow: hidden;
+	padding: 10px 10px;
+	width: 940px;
+	text-align: center;
+
+	border-radius: 15px 15px 0px 15px;
+	-moz-border-radius: 15px 15px 0px 15px;
+	-webkit-border-radius: 15px 15px 0px 15px;
+}
+
+/* Captions */
+#caption {
+	display: inline;
+	background: #ffffff;
+	margin: 10px;
+	padding: 10px 150px 10px 150px;
+	width: 50%;
+	font-size: 1.571em;
+	text-align: center;
+}
+
+/* Bottom */
+#bottom {
+	background: #ffffff;
+	margin-bottom: 10px;
+	overflow: hidden;
+	padding: 10px 10px;
+	width: 960px;
+	
+	border-radius: 15px 15px 15px 15px;
+	-moz-border-radius: 15px 15px 15px 15px;
+	-webkit-border-radius: 15px 15px 15px 15px;
+}
+
+/* Extras */
+#extras {
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 10px 10px;
+	width: 960px;
+}
+
+#extras ul {
+	list-style: none; 
+	margin: auto;
+	height: 55px;
+}
+/*#extras ul {list-style: none; margin: auto;}*/
+#extras li {display: inline; margin: auto;}
+
+#extras a:link, #extras a:visited {
+	display: inline;
+	padding: 5px 30px 25px 25px;
+}
+
+	#extras .social {
+		float: right;
+	}
+	
+	#extras div[class='social'] a {
+		background-repeat: no-repeat;
+	}
+	
+		/* Icons */
+		.social a[href*='facebook.com'] {background-image: url('../images/icons/facebook_48x48.png');}
+		.social a[href*='yelp.com'] {background-image: url('../images/icons/yelp_48x48.png');}
+		.social a[href*='twitter.com'] {background-image: url('../images/icons/twitter_48x48.png');}
+
+/*
+	Footer
+*****************/
+#contentinfo {padding-bottom: 2em; text-align: right; color: #FFFFFF;}
+
+/* 
+
+	Testimonials 
+*****************/
+.hentry {
+	border-bottom: 1px solid #eee;
+	padding: 60px 0;
+	color: #000000;
+}
+li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
+#content > .hentry {padding: 1em 0;}
+
+.entry-title {font-size: 1.429em; margin-bottom: 0; }
+.entry-title a:link, .entry-title a:visited {text-decoration: none;}
+
+.hentry .post-info * {font-style: normal;}
+
+	/* Content */
+	.hentry footer {margin-bottom: 10px;}
+	.hentry footer address {display: inline;}
+	#posts-list footer address {display: block;}
+
+	/* Blog Index */
+	#posts-list {list-style: none; margin: 0;}
+	#posts-list .hentry {padding-left: 200px; position: relative;}
+	#posts-list .hentry:hover {
+		background: #F8CCD0;
+		color: #000000;
+	}
+	#posts-list .hentry:hover a:link, #posts-list .hentry:hover a:visited {
+		color: #000000;
+		text-shadow: 1px 1px 1px #333;
+	}
+	
+	#posts-list footer {
+		left: 10px;
+		position: absolute;
+		top: 1.5em;
+		width: 190px;
+	}
+	
+	/* About the Author */
+	#about-author {
+		background: #f9f9f9;
+		clear: both;
+		font-style: normal;
+		margin: 2em 0;
+		padding: 10px 20px 15px 20px;
+		
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+	}
+	
+	#about-author strong {
+		color: #C64350;
+		clear: both;
+		display: block;
+		font-size: 1.429em;
+	}
+	
+	#about-author .photo {border: 1px solid #ddd; float: left; margin: 5px 1em 0 0;}
+	
+	/* Comments */
+	#comments-list {list-style: none; margin: 0 1em;}
+	#comments-list blockquote {
+		background: #f8f8f8;
+		clear: both;
+		font-style: normal;
+		margin: 0;
+		padding: 15px 20px;
+		
+		border-radius: 5px;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+	}
+	#comments-list footer {color: #888; padding: .5em 1em 0 0; text-align: right;}
+	
+	#comments-list li:nth-child(2n) blockquote {background: #F5f5f5;}
+	
+	/* Add a Comment */
+	#add-comment label {clear: left; float: left; text-align: left; width: 150px;}
+	#add-comment input[type='text'],
+	#add-comment input[type='email'],
+	#add-comment input[type='url'] {float: left; width: 200px;}
+	
+	#add-comment textarea {float: left; height: 150px; width: 495px;}
+	
+	#add-comment p.req {clear: both; margin: 0 .5em 1em 0; text-align: right;}
+	
+	#add-comment input[type='submit'] {float: right; margin: 0 .5em;}
+	#add-comment * {margin-bottom: .5em;}
