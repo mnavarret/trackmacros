@@ -16,18 +16,17 @@
             'id'        =>      'password',
             'value'     =>      ''
         );
-        
     ?>
 
     <ul>
-        <li
+        <li>
         <label>Username</label>
         <div>
             <?php echo form_input($username); ?>
         </div>
         </li>
 
-        <li
+        <li>
         <label>Password</label>
         <div>
             <?php echo form_password($password); ?>
