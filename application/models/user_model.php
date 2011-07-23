@@ -38,11 +38,12 @@ class User_model extends CI_Model {
     
     function check_login($username, $password)
     {
-        $query_str = "SELECT id FROM tbl_user WHERE username = ? AND password = ?";
+        $query_str = "SELECT id, name, activated FROM tbl_user WHERE username = ? AND password = ?";
         $sha1_password = sha1($password);
 
-        $result = $this->db->query($query_str, array($username,$sha1_password) );
-
+        //$result = 
+        return $this->db->query($query_str, array($username,$sha1_password) );
+/*
         if( $result->num_rows() == 1 )
         {
             return $result->row(0)->id;
@@ -51,6 +52,7 @@ class User_model extends CI_Model {
         {
             return false;
         }
+        */
     }
 
 
