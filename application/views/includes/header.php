@@ -21,6 +21,17 @@
 	<section id="pagetop">
         <h1><a href="http://trackmacros.com">TrackMacros</strong></a></h1>
         <section id="login">
-            <a href="http://trackmacros.com/trackmacros/login">Login</a> | <a href="http://trackmacros.com/trackmacros/register">Register</a>
+        <?php 
+        	if( $this->session->userdata('logged_in') )
+        	{
+            	$name = $this->session->userdata('name');
+        		echo "Welcome $name | <a href=\"http://trackmacros.com/trackmacros/logout\">Logout</a>";
+        	}
+	        else
+	        {
+	            echo "<a href=\"http://trackmacros.com/trackmacros/login\">Login</a> | <a href=\"http://trackmacros.com/trackmacros/register\">Register</a>";
+	        }
+	     ?>
+         
         </section>
     </section>
