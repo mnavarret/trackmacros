@@ -41,18 +41,6 @@ class Trackmacros extends CI_Controller {
         $this->load->view('template', $data);
 	}
     
-    public function main_page()
-    {
-        if( $this->session->userdata('logged_in') )
-        {
-            echo 'You are logged in and you may view this lovely page.';
-        }
-        else
-        {
-            redirect('trackmacros/login');
-        }
-    }
-
     public function login()
     {
         $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numberic|min_length[6]|xss_clean|strtolower');
@@ -67,9 +55,10 @@ class Trackmacros extends CI_Controller {
         {
             // everything is good - process the input and login the user
             extract($_POST);
-            $user_id = $this->User_model->check_login($username, $password);
+            //$user_id = 
+            $query = $this->User_model->check_login($username, $password);
 
-            if( !$user_id )
+            if( $query->num_rows() <= 0 )
             {
                 //login failed
                 $this->session->set_flashdata('login_error', TRUE);
@@ -78,11 +67,14 @@ class Trackmacros extends CI_Controller {
             else
             {
                 //login the user
+                $row = $query->row();
                 $this->session->set_userdata( array(
                                 'logged_in' => TRUE, 
-                                'user_id' => $user_id ) );
+                                'id' => $row->id,
+                				'name' => $row->name,
+                				'activated' => $row->activated ) );
 
-               redirect('trackmacros/main_page');
+               redirect('');
             }
         }
     }
@@ -90,6 +82,7 @@ class Trackmacros extends CI_Controller {
     public function logout()
     {
         $this->session->sess_destroy();
+        redirect('');
     }
 
     public function register()
