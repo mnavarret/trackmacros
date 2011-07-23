@@ -41,18 +41,8 @@ class User_model extends CI_Model {
         $query_str = "SELECT id, name, activated FROM tbl_user WHERE username = ? AND password = ?";
         $sha1_password = sha1($password);
 
-        //$result = 
         return $this->db->query($query_str, array($username,$sha1_password) );
-/*
-        if( $result->num_rows() == 1 )
-        {
-            return $result->row(0)->id;
-        }
-        else
-        {
-            return false;
-        }
-        */
+        
     }
 
 
