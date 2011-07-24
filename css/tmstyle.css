@@ -226,6 +226,16 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	-webkit-border-radius: 0px 0px 15px 15px;
 }
 
+ul {
+color: #e73800;
+text-decoration: none;
+text-indent: 5px;
+list-style-position: outside;
+list-style-type: disc;
+padding: 6px;
+margin: 2px;
+}
+
 /* Photos */
 #photo {
 	background: #ffffff;
