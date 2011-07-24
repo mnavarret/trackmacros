@@ -2,6 +2,14 @@
 	    <section id="mainimg">
         </section>
     	<h2>Wecome to TrackMacros!</h2>
+    	<p>Trackmacros is a free diet & weight loss journal</p>
+    	<p>Learn how to achieve your ideal body composition through proven scientific methods.</p>
+    	<ul>
+    	<li>Completely Free</li>
+    	<li>Track your Foods</li>
+    	<li>Track your Weight</li>
+    	<li>Reach your goals!</li>
+    	</ul>
 	</section><!-- /#content -->
 	
         <section id="bottom">
