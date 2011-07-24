@@ -36,7 +36,6 @@ class Trackmacros extends CI_Controller {
     
     public function about()
 	{
-        
         $data['main_content'] = 'about';
         $this->load->view('template', $data);
 	}
@@ -55,19 +54,26 @@ class Trackmacros extends CI_Controller {
         {
             // everything is good - process the input and login the user
             extract($_POST);
-            //$user_id = 
+          
             $query = $this->User_model->check_login($username, $password);
 
             if( $query->num_rows() <= 0 )
             {
                 //login failed
-                $this->session->set_flashdata('login_error', TRUE);
+                $this->session->set_flashdata('login_error_incorrect', TRUE);
+                redirect('trackmacros/login');
+            }
+            
+            $row = $query->row();
+            
+            if( $row->activated == 0 )
+            {
+            	$this->session->set_flashdata('login_error_activate', TRUE);
                 redirect('trackmacros/login');
             }
             else
             {
                 //login the user
-                $row = $query->row();
                 $this->session->set_userdata( array(
                                 'logged_in' => TRUE, 
                                 'id' => $row->id,
@@ -105,45 +111,55 @@ class Trackmacros extends CI_Controller {
             $username = $this->input->post('username');
             $name = $this->input->post('name');
             $password = $this->input->post('password');
-            $email = $this->input->post('email');
+            $email_address = $this->input->post('email_address');
 
             $activation_code = $this->_random_string(10);
 
-            $this->User_model->register_user($username, $password, $name, $email, $activation_code);
+            $this->User_model->register_user($username, $password, $name, $email_address, $activation_code);
         
             // email confirmation
             $this->load->library('email');
+            $config['mailtype'] = 'html';
             $this->email->from('matt.navarret@gmail.com', 'TrackMacros');
-            $this->email->to($email);
+            $this->email->to($email_address);
             $this->email->subject('Registration Confirmation');
-            $this->email->message('Please click this link to confirm your registration '. anchor('http://trackmacros.com/index.php/trackmacros/register_confirm/' . $activation_code, 'Confirm Registration'));
+            $this->email->message('Please click this link or copy and paste it into your brower\'s address bar to confirm your registration ' . 
+            	'http://trackmacros.com/trackmacros/register_confirm/' . $activation_code);
             $this->email->send();
             // confirmation message view
-            echo 'Please click this link to confirm your registration '. anchor('http://trackmacros.com/index.php/trackmacros/register_confirm/' . $activation_code, 'Confirm Registration');
+     		$data['main_content'] = 'registration';
+        	$data['registration_status'] = 2;
+        	$this->load->view('template', $data);
         }
     }
 
     function register_confirm()
     {
         $registration_code = $this->uri->segment(3);
+        echo "$registration_code";
 
         if( $registration_code == '' )
         {
-            echo 'Error no registration code in URL';
-            exit();
+     		$data['main_content'] = 'registration';
+        	$data['registration_status'] = 0;
+        	$this->load->view('template', $data);
+        	return;
         }
 
         $registration_confirmed = $this->User_model->confirm_registration($registration_code);
 
         if( $registration_confirmed )
         {
-            echo 'You have successfully registered!';
+            $data['main_content'] = 'registration';
+        	$data['registration_status'] = 1;
+        	$this->load->view('template', $data);
         }
         else
         {
-            echo 'You have failed to register - no record found for that activation code';
+            $data['main_content'] = 'registration';
+        	$data['registration_status'] = 4;
+        	$this->load->view('template', $data);
         }
-
     }
     
     function username_not_exists($username)
