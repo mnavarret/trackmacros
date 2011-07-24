@@ -36,15 +36,19 @@
         <li>
         <div>
             <?php
-            if( $this->session->flashdata('login_error') == TRUE )
-            {
-                echo 'You entered an incorrect username or password';
-            }
-            else
-            {
-                echo validation_errors();
-            }
-    
+	            if( $this->session->flashdata('login_error_incorrect') == TRUE )
+	            {
+	                echo 'You entered an incorrect username or password';
+	            }
+	            else
+	            if( $this->session->flashdata('login_error_activate') == TRUE )
+	            {
+	                echo 'You must activate your account before you can login';
+	            }
+	            else
+	            {
+	                echo validation_errors();
+           		}
             ?>
         </div>
         </li>
