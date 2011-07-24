@@ -1,20 +1,66 @@
 <?php
         $page = $this->uri->segment(2);
         $home = '';
+        $profile = '';
+        $foods = '';
+        $weight = '';
         $about = '';
+        $guides = '';
+        $contact = '';
 
         if( strlen( $page ) == 0 )
         {
             $home = ' class="current"';
         }
         else
+        if( strcmp( $page, 'profile' ) == 0 )
+        {
+            $profile = ' class="current"';
+        }
+        else
+        if( strcmp( $page, 'foods' ) == 0 )
+        {
+            $foods = ' class="current"';
+        } 
+        else
+        if( strcmp( $page, 'weight' ) == 0 )
+        {
+            $weight = ' class="current"';
+        } 
+        else
         if( strcmp( $page, 'about' ) == 0 )
         {
             $about = ' class="current"';
+        } 
+        else
+        if( strcmp( $page, 'guides' ) == 0 )
+        {
+            $guides = ' class="current"';
+        } 
+        else
+        if( strcmp( $page, 'contact' ) == 0 )
+        {
+            $contact = ' class="current"';
         }    
+		
+        if( $this->session->userdata('logged_in') )
+		{
+			echo '<ul id="nav">';
+			echo "<li$home><a href=\"http://trackmacros.com\">Home</a></li>";
+			echo "<li$profile><a href=\"http://trackmacros.com/trackmacros/profile\">Profile</a></li>";
+			echo "<li$foods><a href=\"http://trackmacros.com/trackmacros/foods\">Foods</a></li>";
+			echo "<li$weight><a href=\"http://trackmacros.com/trackmacros/weight\">Weight</a></li>";
+			echo "<li$about><a href=\"http://trackmacros.com/trackmacros/about\">About</a></li>";
+			echo "<li$guides><a href=\"http://trackmacros.com/trackmacros/guides\">Guides</a></li>";
+			echo "<li$contact><a href=\"http://trackmacros.com/trackmacros/contact\">Contact</a></li>";
+			echo '</ul>';		
+		}
+		else
+		{
+			echo '<ul id="nav">';
+			echo "<li$home><a href=\"http://trackmacros.com\">Home</a></li>";
+			echo "<li$about><a href=\"http://trackmacros.com/trackmacros/about\">About</a></li>";
+			echo "<li$contact><a href=\"http://trackmacros.com/trackmacros/contact\">Contact</a></li>";
+			echo '</ul>';
+		}
 ?>
-	<ul id="nav">
-		<li<?php echo "$home" ?>><a href="http://trackmacros.com">Home</a></li>
-		<li<?php echo "$about" ?>><a href="http://trackmacros.com/trackmacros/about">About Us</a></li>
-	</ul>
-
