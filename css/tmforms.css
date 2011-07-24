@@ -75,6 +75,7 @@ label {font-size: 1.1em; height: 25px; line-height: 25px;}
         cursor: pointer;
 
         padding: 8px 13px;
+        margin: 15px 0px 0px 0px;
         font-weight: bold;
         border-radius: 5px;
         text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
