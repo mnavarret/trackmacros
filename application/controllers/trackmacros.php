@@ -157,7 +157,7 @@ class Trackmacros extends CI_Controller {
         else
         {
             $data['main_content'] = 'registration';
-        	$data['registration_status'] = 4;
+        	$data['registration_status'] = 3;
         	$this->load->view('template', $data);
         }
     }
