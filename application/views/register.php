@@ -76,7 +76,7 @@
             <?php echo validation_errors(); ?>
         </div>
         </li>
-
+		
         <li>
         <div>
             <?php echo form_submit(array('name' => 'register'),'Register'); ?>
