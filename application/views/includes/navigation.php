@@ -6,7 +6,6 @@
         $weight = '';
         $about = '';
         $guides = '';
-        $contact = '';
 
         if( strlen( $page ) == 0 )
         {
@@ -37,11 +36,7 @@
         {
             $guides = ' class="current"';
         } 
-        else
-        if( strcmp( $page, 'contact' ) == 0 )
-        {
-            $contact = ' class="current"';
-        }    
+   
 		
         if( $this->session->userdata('logged_in') )
 		{
@@ -52,7 +47,6 @@
 			echo "<li$weight><a href=\"http://trackmacros.com/trackmacros/weight\">Weight</a></li>";
 			echo "<li$about><a href=\"http://trackmacros.com/trackmacros/about\">About</a></li>";
 			echo "<li$guides><a href=\"http://trackmacros.com/trackmacros/guides\">Guides</a></li>";
-			echo "<li$contact><a href=\"http://trackmacros.com/trackmacros/contact\">Contact</a></li>";
 			echo '</ul>';		
 		}
 		else
@@ -60,7 +54,6 @@
 			echo '<ul id="nav">';
 			echo "<li$home><a href=\"http://trackmacros.com\">Home</a></li>";
 			echo "<li$about><a href=\"http://trackmacros.com/trackmacros/about\">About</a></li>";
-			echo "<li$contact><a href=\"http://trackmacros.com/trackmacros/contact\">Contact</a></li>";
 			echo '</ul>';
 		}
 ?>
