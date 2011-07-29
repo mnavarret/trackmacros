@@ -34,13 +34,61 @@ class Trackmacros extends CI_Controller {
         $this->load->view('template', $data);
 	}
     
+    public function profile()
+	{
+		if( $this->session->userdata('logged_in') )
+		{   $data['main_content'] = 'profile';
+        	$this->load->view('template', $data);
+		}
+		else
+		{
+			redirect('trackmacros/login');
+		}
+	}
+    
+    public function foods()
+	{
+        if( $this->session->userdata('logged_in') )
+        {   $data['main_content'] = 'foods';
+        	$this->load->view('template', $data);
+        }
+        else
+		{
+			redirect('trackmacros/login');
+		}        
+	}
+	
+    public function weight()
+	{
+        if( $this->session->userdata('logged_in') )
+        {   $data['main_content'] = 'weight';
+        	$this->load->view('template', $data);
+        }
+        else
+		{
+			redirect('trackmacros/login');
+		}           
+	}
+	
     public function about()
 	{
         $data['main_content'] = 'about';
         $this->load->view('template', $data);
 	}
-    
-    public function login()
+	
+    public function guides()
+	{
+        if( $this->session->userdata('logged_in') )		
+        {   $data['main_content'] = 'guides';
+        	$this->load->view('template', $data);
+        }
+        else
+ 		{
+			redirect('trackmacros/login');
+		}          
+	}
+	
+	public function login()
     {
         $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numberic|min_length[6]|xss_clean|strtolower');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|xss_clean');
@@ -83,6 +131,39 @@ class Trackmacros extends CI_Controller {
                redirect('');
             }
         }
+    }
+    
+	public function addupdate_weight()
+    {
+        $this->form_validation->set_rules('weight', 'Weight', 'trim|required|numeric|xss_clean');
+        $this->form_validation->set_rules('date', 'Date', 'trim|required|xss_clean|valid_date');
+        $this->form_validation->set_message('valid_date', 'The %s field must be entered in MM/DD/YYYY format.');
+		
+        if( $this->form_validation->run() == FALSE )
+        {
+        	// hasn't been run or there are validation errors
+            $data['main_content'] = 'weight';
+            $this->load->view('template', $data);
+        }
+        else
+        {
+            // everything is good - process the input and add the user's weight
+            extract($_POST);
+			$this->Weight_model->add_update($date, $weight, $unit);
+			redirect('trackmacros/weight');
+        }
+    }
+
+	public function view_weights()
+    {
+    	extract($_POST);
+        $result = $this->Weight_model->view($period);
+        $data['result'] = $result;
+        $data['period'] = $period;
+        $this->load->view('includes/header');
+   		$this->load->view('includes/navigation');
+		$this->load->view('weights', $data);
+		$this->load->view('includes/footer');
     }
     
     public function logout()
