@@ -57,6 +57,39 @@ class Trackmacros extends CI_Controller {
 			redirect('trackmacros/login');
 		}        
 	}
+
+    public function addfoods()
+	{
+		if( $this->session->userdata('logged_in') )
+		{
+			$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|min_length[6]|xss_clean|valid_email');
+	        $this->form_validation->set_rules('body', 'body', 'xss_clean');
+			if( $this->session->userdata('logged_in') )
+	        {   $data['main_content'] = 'addfoods';
+	        	$this->load->view('template', $data);
+	        }
+			else
+	        {
+	            // everything is good - process the input and login the user
+	            extract($_POST);
+	          
+	        /*    $query = $this->User_model->check_login($username, $password);
+	
+	            if( $query->num_rows() <= 0 )
+	            {
+	                //login failed
+	                $this->session->set_flashdata('login_error_incorrect', TRUE);
+	                redirect('trackmacros/login');
+	            }
+	        */
+	        }
+
+		}
+	    else
+		{
+			redirect('trackmacros/login');
+		}		
+	}
 	
     public function weight()
 	{
@@ -135,37 +168,77 @@ class Trackmacros extends CI_Controller {
     
 	public function addupdate_weight()
     {
-        $this->form_validation->set_rules('weight', 'Weight', 'trim|required|numeric|xss_clean');
-        $this->form_validation->set_rules('date', 'Date', 'trim|required|xss_clean|valid_date');
-        $this->form_validation->set_message('valid_date', 'The %s field must be entered in MM/DD/YYYY format.');
-		
-        if( $this->form_validation->run() == FALSE )
+        if( $this->session->userdata('logged_in') )
         {
-        	// hasn't been run or there are validation errors
-            $data['main_content'] = 'weight';
-            $this->load->view('template', $data);
+	    	$this->form_validation->set_rules('weight', 'Weight', 'trim|required|numeric|xss_clean');
+	        $this->form_validation->set_rules('date', 'Date', 'trim|required|xss_clean|valid_date');
+	        $this->form_validation->set_message('valid_date', 'The %s field must be entered in MM/DD/YYYY format.');
+			
+	        if( $this->form_validation->run() == FALSE )
+	        {
+	        	// hasn't been run or there are validation errors
+	            $data['main_content'] = 'weight';
+	            $this->load->view('template', $data);
+	        }
+	        else
+	        {
+	            // everything is good - process the input and add the user's weight
+	            extract($_POST);
+				$this->Weight_model->add_update($date, $weight, $unit);
+				redirect('trackmacros/weight');
+	        }
         }
         else
         {
-            // everything is good - process the input and add the user's weight
-            extract($_POST);
-			$this->Weight_model->add_update($date, $weight, $unit);
-			redirect('trackmacros/weight');
+        	redirct('trackmacros/login');
         }
     }
 
 	public function view_weights()
     {
-    	extract($_POST);
-        $result = $this->Weight_model->view($period);
-        $data['result'] = $result;
-        $data['period'] = $period;
-        $this->load->view('includes/header');
-   		$this->load->view('includes/navigation');
-		$this->load->view('weights', $data);
-		$this->load->view('includes/footer');
+        if( $this->session->userdata('logged_in') )
+        {
+	    	extract($_POST);
+	        $result = $this->Weight_model->view($period);
+	        $data['result'] = $result;
+	        $data['period'] = $period;
+			$this->load->view('includes/header');
+			$this->load->view('includes/style');
+			$this->load->view('includes/endheader');
+			$this->load->view('includes/navigation');
+			$this->load->view('view_weights', $data);
+			$this->load->view('includes/bottom');   
+			$this->load->view('includes/footer');
+        }
+        else
+        {
+        	redirect('trackmacros/login');
+        }
     }
+
     
+	public function email_weights()
+	{
+		if( $this->session->userdata('logged_in') )
+		{
+			extract($_POST);
+	        // email weigh ins
+	        $this->load->library('email');
+	        $config['mailtype'] = 'html';
+	        $this->email->from('matt.navarret@gmail.com', 'TrackMacros');
+	        $this->email->to($email_address);
+	        $this->email->subject('Weigh ins for the ');
+	        $this->email->message($weights . "\n" . $body);
+	        $this->email->send();
+            $this->session->set_flashdata('email_successful', TRUE);
+	        redirect('trackmacros/weight');
+		}
+		else
+		{
+			redirect('trackmacros/login');
+		}	        
+	}
+	
     public function logout()
     {
         $this->session->sess_destroy();
