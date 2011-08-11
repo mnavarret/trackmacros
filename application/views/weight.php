@@ -1,9 +1,10 @@
-	<section id="content" class="body">
+	<div id="content" class="body">
     <?php
 		echo form_open('trackmacros/view_weights');
         
         $period_options = array(
-            'WEEK'      =>      'Week',
+			'DAY'		=>		'Day',	
+        	'WEEK'      =>      'Week',
             'MONTH'     =>      'Month',
         	'YEAR'      =>      'Year',
         	'ALL'       =>      'All'
@@ -12,7 +13,7 @@
     <ul>
         <li>
         <label>View weight ins by:</label>
-        <?php echo form_dropdown('period',$period_options,'Week','id="period"'); ?>
+        <?php echo form_dropdown('period',$period_options,'Day','id="period"'); ?>
         <?php echo form_submit(array('name' => 'viewweights'), 'View'); ?>
         </li>
     </ul>
@@ -50,12 +51,17 @@
             	
 	            if( $this->session->flashdata('weight_added') == TRUE )
 	            {
-	                echo 'Weight added';
+	                echo 'Weight Added';
 	            }
 	            
 	            if( $this->session->flashdata('weight_updated') == TRUE )
 	            {
-	                echo 'Weight updated';
+	                echo 'Weight Updated';
+	            }
+	            
+	            if( $this->session->flashdata('email_successful') == TRUE )
+	            {
+	            	echo 'Email Sent Successfully';
 	            }
             ?>
         </div>
@@ -95,20 +101,4 @@
         echo form_close();
     ?>        
 
-	</section><!-- /#content -->
-	
-        <section id="bottom">
-	<section id="extras" class="body">
-		<div class="social">
-			<ul>
-				<li><a href="http://twitter.com/" rel="alternate"> </a></li>
-			</ul>
-		</div>
-      		
-		<div class="social">
-			<ul>
-				<li><a href="http://facebook.com/" rel="me"> </a></li>
-			</ul>
-		</div><!-- /.social -->
-	</section><!-- /#extras -->
-	</section>
+	</div><!-- /#content -->
