@@ -1,4 +1,4 @@
-	<section id="content" class="body">
+	<div id="content" class="body">
 	<div class="foods">	
 	<?php 
 	$atts = array(
@@ -7,4 +7,4 @@
             );
 	echo anchor("trackmacros/addfoods", "Add A Food To The Database", $atts);
 		?></div>
-	</section><!-- /#content -->
+	</div><!-- /#content -->
