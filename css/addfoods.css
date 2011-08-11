@@ -1,0 +1,59 @@
+.col-1 {
+	font-size: 1.1em; 
+	height: 25px; 
+	line-height: 25px;
+	width: 150px;
+    /*padding: 8px 13px;*/
+	/*margin: 10px 0px 0px 0px;*/    
+    font-weight: bold;	
+	}
+
+.col-1sub {
+	padding-left: 20px;
+	font-weight: lighter;		
+	}
+
+input[type='text']{
+		width: 50px;
+	}
+.bottomborder {
+border-bottom: 1px solid #CECECE;
+} 	
+input[type='text']:hover{
+		background: #FFFBEF;
+		border-color: #000000;
+		cursor: text;
+	}
+	
+	input[type='submit'] {
+	    /* Disables default styling */
+        border: none;
+        background: #00B6FF;
+        color: #FFFFFF;
+
+        /* You need to set font, font size and cursor for buttons */
+        font-size: 15px;
+        font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+        cursor: pointer;
+
+        padding: 8px 13px;
+        margin: 15px 0px 0px 0px;
+        font-weight: bold;
+        border-radius: 5px;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
+        box-shadow:
+            0 0 0 1px #0086ba inset, /* Outer bevel */
+            0 0 0 2px #6cdcea inset, /* Inner bevel */
+            0 30px 20px -18px rgba(255,255,255,0.65) inset, /* Inner gradient */
+            1px 1px 3px rgba(0,0,0,0.2) /* Drop shadow */
+        ;
+
+        -webkit-border-radius: 5px;
+        -webkit-text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
+        -webkit-box-shadow:
+            0 0 0 1px #0086ba inset, /* Outer bevel */
+            0 0 0 2px #6cdcea inset, /* Inner bevel */
+            0 30px 20px -18px rgba(255,255,255,0.65) inset, /* Inner gradient */
+            1px 1px 3px rgba(0,0,0,0.2) /* Drop shadow */
+        ;
+    }	
