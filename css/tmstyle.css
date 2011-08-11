@@ -9,7 +9,7 @@
 
 /* Imports */
 @import url("reset.css");
-@import url("tmforms.css");
+
 
 body {
 	font-size: 87.5%; /* Base font size: 14px */
@@ -31,7 +31,7 @@ h1 {
 }
 h1 a:link, h1 a:visited {
 	color: #FFFFFF;
-	font-family: barbie, Lucida Grande, sans-serif;
+	font-family: Lucida Grande, sans-serif;
 	display: block;
 	font-weight: bold;
 	margin: 0 0 .6em .2em;
@@ -93,8 +93,6 @@ aside, nav, article, figure {
 
 /***** Layout *****/
 .body {clear: both; margin: 0 auto; width: 800px;}
-.slideshow { height: 550px; width: 800px; margin: auto; }
-.slideshow img { padding: 15px; border: 1px solid #ccc; background-color: #eee; }
 img.right figure.right {float: right; margin: 0 0 2em 2em;}
 img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 
