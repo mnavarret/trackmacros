@@ -1,4 +1,4 @@
-	<section id="content" class="body">
+	<div id="content" class="body">
     	<h2>Registration Required</h2>
         <p>Fill out form to gain access</p>
     <?php
@@ -86,4 +86,4 @@
     
         echo form_close();
     ?>        
-	</section><!-- /#content -->
+	</div><!-- /#content -->
