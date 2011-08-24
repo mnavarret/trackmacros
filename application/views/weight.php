@@ -12,7 +12,7 @@
     ?>
     <ul>
         <li>
-        <label>View weight ins by:</label>
+        <label>View weigh ins by:</label>
         <?php echo form_dropdown('period',$period_options,'Day','id="period"'); ?>
         <?php echo form_submit(array('name' => 'viewweights'), 'View'); ?>
         </li>
@@ -84,7 +84,7 @@
             <?php echo form_dropdown('unit',$unit_options,'lbs','id="unit"'); ?>
         </div>
         </li>
-        <li>
+        <li class="error">
         <div>
             <?php echo validation_errors(); ?>
         </div>
