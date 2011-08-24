@@ -41,11 +41,9 @@
         if( $this->session->userdata('logged_in') )
 		{
 			echo '<ul id="nav">';
-			echo "<li$home><a href=\"http://trackmacros.com\">Home</a></li>";
 			echo "<li$profile><a href=\"http://trackmacros.com/trackmacros/profile\">Profile</a></li>";
 			echo "<li$foods><a href=\"http://trackmacros.com/trackmacros/foods\">Foods</a></li>";
 			echo "<li$weight><a href=\"http://trackmacros.com/trackmacros/weight\">Weight</a></li>";
-			echo "<li$about><a href=\"http://trackmacros.com/trackmacros/about\">About</a></li>";
 			echo "<li$guides><a href=\"http://trackmacros.com/trackmacros/guides\">Guides</a></li>";
 			echo '</ul>';		
 		}
