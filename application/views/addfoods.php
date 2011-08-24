@@ -1,126 +1,132 @@
-	<section id="content" class="body">
+	<div id="content" class="body">
 	<div id="main">
 	
       <h2 class="main-title">Enter Nutritional Information</h2>
 <?php		
-	  	$addfoodform = array(
-            'name'      =>      'addfoodform'
-        );
-
-        echo form_open('trackmacros/addfoods',$addfoodform);
+        echo form_open('trackmacros/addfoodform');
 
         $brand = array(
             'name'      =>      'brand',
             'id'        =>      'brand',
-            'value'     =>      set_value('brand'),
-         	'style'       =>    'width:25%',
+            'value'     =>      '',
+         	'style'     =>      'width:25%',
       	);
         
-      	$desc = array(
-            'name'      =>      'desc',
-            'id'        =>      'desc',
-            'value'     =>      set_value('desc'),
-         	'style'       =>    'width:25%'
+      	$description = array(
+            'name'      =>      'description',
+            'id'        =>      'description',
+            'value'     =>      '',
+         	'style'     =>      'width:25%'
       	);
       	
       	$amount = array(
             'name'      =>      'amount',
             'id'        =>      'amount',
-            'value'     =>      set_value('amount'),
-         	'style'       =>    'width:25%'
+            'value'     =>      '0.0'
       	);
       	
       	$unit_options = array(
-            'grams'      =>      'grams',
- 			'ounces'	 =>		 'ounces'
+            'grams'      =>      'grams'
         );
 
       	$calories = array(
             'name'      =>      'calories',
             'id'        =>      'calories',
          	'style'     =>  	'width:50px',
-      		'value'		=>		'0',
-      		'readonly'  => 		'readonly',
+      		'value'		=>		'0'
       	);      	      	      	
       	        
       	$totalfat = array(
             'name'      =>      'totalfat',
-            'onBlur'    =>      'calculate()'
+            'value'		=>		'0.0'
       	);      	      	      	
 
       	$saturated = array(
             'name'      =>      'saturated',
-            'id'		=>		'saturated'
+            'id'		=>		'saturated',
+      		'value'		=>		'0.0'
       	);  
 
       	$polyunsaturated = array(
             'name'      =>      'polyunsaturated',
-            'id'		=>		'polyunsaturated'
+            'id'		=>		'polyunsaturated',
+      		'value'		=>		'0.0'
       	);  
 
       	$monounsaturated = array(
             'name'      =>      'monounsaturated',
-            'id'		=>		'monounsaturated'
+            'id'		=>		'monounsaturated',
+      		'value'		=>		'0.0'
       	);  
       	      	
       	$trans = array(
             'name'      =>      'trans',
-            'id'		=>		'trans'
+            'id'		=>		'trans',
+      		'value'		=>		'0.0'	
       	);  
 
       	$sodium = array(
             'name'      =>      'sodium',
-            'id'		=>		'sodium'
+            'id'		=>		'sodium',
+        	'value'		=>		'0.0'    
       	);
       	
       	$potassium = array(
             'name'      =>      'potassium',
-            'id'		=>		'potassium'
+            'id'		=>		'potassium',
+      		'value'		=>		'0.0'
       	);
       	
-      	$totalcarbs = array(
-            'name'      =>      'totalcarbs',
-            'onBlur'    =>      'calculate()'
+      	$carbs = array(
+            'name'      =>      'carbs',
+            'value'		=>		'0.0'
       	);      	      	      	
       	
       	$fiber = array(
             'name'      =>      'fiber',
-            'id'		=>		'fiber'
+            'id'		=>		'fiber',
+      		'value'		=>		'0.0'
       	);
 
       	$sugars = array(
             'name'      =>      'sugars',
-            'id'		=>		'sugars'
+            'id'		=>		'sugars',
+      		'value'		=>		'0.0'
       	);
 
       	$protein = array(
             'name'      =>      'protein',
-            'onBlur'    =>      'calculate()'
+            'value'		=>		'0.0'
       	);
 
       	$cholesterol = array(
             'name'      =>      'cholesterol',
-            'id'		=>		'cholesterol'
+            'id'		=>		'cholesterol',
+      		'value'		=>		'0.0'
       	);      	
       	
       	$vitamin_a = array(
             'name'      =>      'vitamin_a',
-            'id'		=>		'vitamin_a'
+            'id'		=>		'vitamin_a',
+      		'value'		=>		'0.0'
       	);
       	      	
       	$calcium = array(
             'name'      =>      'calcium',
-            'id'		=>		'calcium'
+            'id'		=>		'calcium',
+      		'value'		=>		'0.0'
       	);
       	      	
       	$vitamin_c = array(
             'name'      =>      'vitamin_c',
-            'id'		=>		'vitamin_c'
+            'id'		=>		'vitamin_c',
+      		'value'		=>		'0.0'
       	);
       	      	
       	$iron = array(
             'name'      =>      'iron',
-            'id'		=>		'iron'
+            'id'		=>		'iron',
+      		'value'		=>		'0.0'
       	);
       	      	
       	$addfood = array(
@@ -144,16 +150,16 @@
 			<li>
 			<h3>
 				<label>Food Description:</label>
-				<?php echo form_input($desc); ?>
-			</li>			
+				<?php echo form_input($description); ?>
 			</h3>
+			</li>			
 			<li>
 				<label>Amount:</label>
-				<?php echo form_input(); ?>
+				<?php echo form_input($amount); ?>
 			</li>
 			<li>
 				<label>Units:</label>
-	      		<?php echo form_dropdown('unit',$unit_options,'grams','id="unit"'); ?>
+	      		<?php echo form_dropdown('units',$unit_options,'grams','id="units"'); ?>
 			</li>
 		</ol>
 	</div>
@@ -191,7 +197,7 @@
 					<td class="col-1sub">Saturated</td>
 					<td class="col-2"><?php echo form_input($saturated); ?>g</td>
 					<td class="col-1">Total Carbs</td>
-					<td class="col-2"><?php echo form_input($totalcarbs); ?>g</td>
+					<td class="col-2"><?php echo form_input($carbs); ?>g</td>
 				</tr>
 				
 				<tr>
@@ -249,13 +255,16 @@
 		*Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs.
 	</p>					
 	<ul>
-	<li>
-       <?php echo form_submit(array('name' => 'addfoods'), 'Add Food'); ?>
-</li>
-</ul>
+		<li class="error">
+            <?php echo validation_errors(); ?>
+        </li>
+		<li>
+       		<?php echo form_submit(array('name' => 'addfoods'), 'Add Food'); ?>
+		</li>
+	</ul>
 <?php
     
         echo form_close();
 ?>  
-	</section><!-- /#content -->
+	</div><!-- /#content -->
 
