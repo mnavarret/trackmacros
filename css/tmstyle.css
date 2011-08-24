@@ -14,7 +14,7 @@
 body {
 	font-size: 87.5%; /* Base font size: 14px */
 	font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-	background: #380101; 
+	background: #0079a6; 
 	line-height: 1.429;
 	width: 980px;
 	margin: 70px auto;
@@ -22,6 +22,18 @@ body {
 
 a {
 	color: #FFFFFF;
+}
+
+a.orange{
+		font-size: 1.429em;
+		color: #0072bc;
+		font-weight: 400;
+		text-decoration: none;
+		line-height: 1.1;
+		margin-bottom: .8em;
+}
+a.orange:hover{
+	text-decoration: underline;
 }
 
 /* Headings */
@@ -43,14 +55,14 @@ h1 a:link, h1 a:visited {
 }
 
 h1 a:hover, h1 a:active {
-	color: #e73800;
+	color: #7ad3f7;
 	text-shadow: 0 1px 1px rgba(0,0,0, .3);
 }
 	
 h1 strong {font-size: 0.36em; font-weight: normal;}
 
-h2 {font-size: 1.571em; color: #e73800}	/* 22px */
-h3 {font-size: 1.429em; color: #e73800}	/* 20px */
+h2 {font-size: 1.571em; color: #0072bc;}	/* 22px */
+h3 {font-size: 1.429em; color: #0072bc;}	/* 20px */
 h4 {font-size: 1.286em}	/* 18px */
 h5 {font-size: 1.143em}	/* 16px */
 h6 {font-size: 1em}		/* 14px */
@@ -69,7 +81,7 @@ q {}
 
 /* Tables */
 table {margin: .5em auto 1.5em auto; width: 98%;}
-	
+
 	/* Thead */
 	thead th {padding: .5em .4em; text-align: left;}
 	thead td {}
@@ -97,7 +109,7 @@ img.right figure.right {float: right; margin: 0 0 2em 2em;}
 img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 
 #pagetop {
-	color: #e73800;
+	color: #7ad3f7;
 	display: inline;
 }
 
@@ -109,8 +121,8 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	margin: 0;
 	padding: 7px;
     height: 26px;
-	background: #e73800;
-
+	background: #7ad3f7;
+	font-weight:bold;
     border-radius: 15px 15px 0px 0px;
 	-moz-border-radius: 15px 15px 0px 0px;
 	-webkit-border-radius: 15px 15px 0px 0px;
@@ -201,7 +213,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 
 /* Main image */
 #mainimg {
-	background: #000000 url(../images/tm_main.png) top center;
+	background: #FFFFFF url(../images/tm_main.png) top center;
 	overflow: hidden;
 	width: 900px;
     height: 200px;
@@ -225,7 +237,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 }
 
 .list{
-color: #e73800;
+color: #0072bc;
 text-decoration: none;
 text-indent: 5px;
 list-style-position: outside;
@@ -311,95 +323,18 @@ margin: 2px;
 *****************/
 #contentinfo {padding-bottom: 2em; text-align: right; color: #FFFFFF;}
 
-/* 
-
-	Testimonials 
-*****************/
-.hentry {
-	border-bottom: 1px solid #eee;
-	padding: 60px 0;
-	color: #000000;
+/* Messages classes */
+.req {color: #00246B;}
+.notice, .success {
+	padding: .2em;
+	margin-bottom: 1em;
+	border: 2px solid #ddd;
 }
-li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
-#content > .hentry {padding: 1em 0;}
 
-.entry-title {font-size: 1.429em; margin-bottom: 0; }
-.entry-title a:link, .entry-title a:visited {text-decoration: none;}
+.error {color: #FF0000; font-weight: bold;}
+.notice {background: #FFF6BF; border-color: #FFD324; color: #514721;}
+.success {background: #E6EFC2; border-color: #C6D880; color: #264409;}
 
-.hentry .post-info * {font-style: normal;}
-
-	/* Content */
-	.hentry footer {margin-bottom: 10px;}
-	.hentry footer address {display: inline;}
-	#posts-list footer address {display: block;}
-
-	/* Blog Index */
-	#posts-list {list-style: none; margin: 0;}
-	#posts-list .hentry {padding-left: 200px; position: relative;}
-	#posts-list .hentry:hover {
-		background: #F8CCD0;
-		color: #000000;
-	}
-	#posts-list .hentry:hover a:link, #posts-list .hentry:hover a:visited {
-		color: #000000;
-		text-shadow: 1px 1px 1px #333;
-	}
-	
-	#posts-list footer {
-		left: 10px;
-		position: absolute;
-		top: 1.5em;
-		width: 190px;
-	}
-	
-	/* About the Author */
-	#about-author {
-		background: #f9f9f9;
-		clear: both;
-		font-style: normal;
-		margin: 2em 0;
-		padding: 10px 20px 15px 20px;
-		
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-	}
-	
-	#about-author strong {
-		color: #C64350;
-		clear: both;
-		display: block;
-		font-size: 1.429em;
-	}
-	
-	#about-author .photo {border: 1px solid #ddd; float: left; margin: 5px 1em 0 0;}
-	
-	/* Comments */
-	#comments-list {list-style: none; margin: 0 1em;}
-	#comments-list blockquote {
-		background: #f8f8f8;
-		clear: both;
-		font-style: normal;
-		margin: 0;
-		padding: 15px 20px;
-		
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-	}
-	#comments-list footer {color: #888; padding: .5em 1em 0 0; text-align: right;}
-	
-	#comments-list li:nth-child(2n) blockquote {background: #F5f5f5;}
-	
-	/* Add a Comment */
-	#add-comment label {clear: left; float: left; text-align: left; width: 150px;}
-	#add-comment input[type='text'],
-	#add-comment input[type='email'],
-	#add-comment input[type='url'] {float: left; width: 200px;}
-	
-	#add-comment textarea {float: left; height: 150px; width: 495px;}
-	
-	#add-comment p.req {clear: both; margin: 0 .5em 1em 0; text-align: right;}
-	
-	#add-comment input[type='submit'] {float: right; margin: 0 .5em;}
-	#add-comment * {margin-bottom: .5em;}
+.error a {color: #8a1f11;}
+.notice a {color: #514721;}
+.success a {color: #264409;}
