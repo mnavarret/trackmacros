@@ -133,18 +133,4 @@ label {font-size: 1.1em; height: 25px; line-height: 25px;}
 	.columns-2 div.left, .columns-2 div.right, .columns-2 div.top {width: 32%;}
 	.columns-3 div.left, .columns-3 div.right, .columns-3 div.top {width: 29%;}
 	
-/* Messages classes */
-.req {color: #00246B;}
-.notice, .success {
-	padding: .2em;
-	margin-bottom: 1em;
-	border: 2px solid #ddd;
-}
 
-.error {color: #FF0000; font-weight: bold;}
-.notice {background: #FFF6BF; border-color: #FFD324; color: #514721;}
-.success {background: #E6EFC2; border-color: #C6D880; color: #264409;}
-
-.error a {color: #8a1f11;}
-.notice a {color: #514721;}
-.success a {color: #264409;}
