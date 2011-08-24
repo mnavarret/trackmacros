@@ -36,9 +36,32 @@ class User_model extends CI_Model {
         }
     }
     
+    function update_user($name, $email_address)
+    {
+        $query_str = "UPDATE tbl_user SET name = ?, email_address = ? WHERE id = ?";
+        $result = $this->db->query($query_str, array($name, $email_address, $this->session->userdata('id')));
+    }
+    
+    function update_password($password, $newpassword)
+    {
+        $sha1_password = sha1($password);
+        $sha1_newpassword = sha1($newpassword);
+        
+    	$query_str = "UPDATE tbl_user SET password = ? WHERE id = ? AND password = ?";
+        $result = $this->db->query($query_str, array($sha1_newpassword, $this->session->userdata('id'),$sha1_password));
+        if( $this->db->affected_rows() == 0 )
+        {
+        	return false;	
+        }
+        else
+        {
+        	return true;        	
+        }
+    }
+    
     function check_login($username, $password)
     {
-        $query_str = "SELECT id, name, activated FROM tbl_user WHERE username = ? AND password = ?";
+        $query_str = "SELECT id, username, name, email_address, activated FROM tbl_user WHERE username = ? AND password = ?";
         $sha1_password = sha1($password);
 
         return $this->db->query($query_str, array($username,$sha1_password) );
