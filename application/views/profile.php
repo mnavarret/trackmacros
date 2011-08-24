@@ -1,33 +1,18 @@
-	<section id="content" class="body">
+	<div id="content" class="body">
     	<h2>My Profile</h2>
     <?php
 
         echo form_open('trackmacros/update_profile');
-        $username = array(
-            'name'      =>      'username',
-            'id'        =>      'username',
-            'value'     =>      set_value('username')
-        );
 
-        $password = array(
-            'name'      =>      'password',
-            'id'        =>      'password',
-            'value'     =>      ''
-        );
-        $password_confirm = array(
-            'name'      =>      'password_confirm',
-            'id'        =>      'password_confirm',
-            'value'     =>      ''
-        );
         $name = array(
             'name'      =>      'name',
             'id'        =>      'name',
-            'value'     =>      set_value('name')
+            'value'     =>      $this->session->userdata('name')
         );
         $email_address = array(
             'name'      =>      'email_address',
             'id'        =>      'email_address',
-            'value'     =>      set_value('email_address')
+            'value'     =>      $this->session->userdata('email_address')
         );
         
     ?>
@@ -36,21 +21,14 @@
         <li>
         <label>Username</label>
         <div>
-            <?php echo form_input($username); ?>
+        <h3><?php echo $this->session->userdata('username'); ?></h3>
         </div>
         </li>
 
         <li>
         <label>Password</label>
         <div>
-            <?php echo form_password($password); ?>
-        </div>
-        </li>
-
-        <li>
-        <label>Confirm Password</label>
-        <div>
-            <?php echo form_password($password_confirm); ?>
+        <?php echo "<a class=\"orange\" href=\"changepassword\"/>Change Password</a>"; ?>
         </div>
         </li>
 
@@ -69,8 +47,22 @@
         </li>
 
         <li>
-        <div>
-            <?php echo validation_errors(); ?>
+        <div class="error">
+            <?php 
+                if( $this->session->flashdata('updated_profile_successful') == TRUE )
+	            {
+	                echo 'Profile successfully updated!';
+	            }
+	            else
+	            if( $this->session->flashdata('updated_password_successful') == TRUE )
+	            {
+	                echo 'Password successfully updated!';
+	            }
+	            else
+	            {
+	            	echo validation_errors(); 
+	            }
+	        ?>
         </div>
         </li>
 		
@@ -85,4 +77,4 @@
     
         echo form_close();
     ?>        
-	</section><!-- /#content -->
+	</div><!-- /#content -->
