@@ -46,7 +46,93 @@ class Trackmacros extends CI_Controller {
 		}
 	}
     
-    public function foods()
+    public function changepassword()
+	{
+		if( $this->session->userdata('logged_in') )
+		{   $data['main_content'] = 'changepassword';
+        	$this->load->view('template', $data);
+		}
+		else
+		{
+			redirect('trackmacros/login');
+		}
+	}
+	
+    public function updatepassword()
+	{
+		if( $this->session->userdata('logged_in') )
+		{   
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|xss_clean');
+        	$this->form_validation->set_rules('newpassword', 'New Password', 'trim|required|min_length[6]|xss_clean');
+        	$this->form_validation->set_rules('confirmnewpassword', 'Confirm New Password', 'trim|required|min_length[6]|xss_clean|matches[newpassword]');
+
+        	if( $this->form_validation->run() == FALSE )
+        	{
+            	// hasn't been run or there are validation errors
+            	$data['main_content'] = 'changepassword';
+            	$this->load->view('template', $data);
+        	}
+			else 
+			{			
+				// everything is good - process the form - write the data into the db
+	            $password = $this->input->post('password');
+	            $newpassword = $this->input->post('newpassword');
+	
+	            if( $this->User_model->update_password($password, $newpassword) == FALSE )
+	            {
+	            	$this->session->set_flashdata('updated_password_failed', TRUE);
+	            	$data['main_content'] = 'changepassword';
+            		$this->load->view('template', $data);
+	            }
+	        	else
+	        	{
+	        		$this->session->set_flashdata('updated_password_successful', TRUE);
+					redirect('trackmacros/profile');
+	        	}
+			}
+		}
+        else
+		{
+			redirect('trackmacros/login');
+		}
+	}	
+	
+	public function update_profile()
+	{
+		if( $this->session->userdata('logged_in') )
+		{   
+			$this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[6]|max_length[125]|xss_clean');
+        	$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|min_length[6]|xss_clean|valid_email');
+
+        	if( $this->form_validation->run() == FALSE )
+        	{
+            	// hasn't been run or there are validation errors
+            	$data['main_content'] = 'profile';
+            	$this->load->view('template', $data);
+        	}
+			else 
+			{			
+				// everything is good - process the form - write the data into the db
+	            $name = $this->input->post('name');
+	            $email_address = $this->input->post('email_address');
+	
+	            $this->User_model->update_user($name, $email_address);
+	        
+                $this->session->set_userdata( array(
+                				'name' => $name,
+                				'email_address' => $email_address ) );
+                $this->session->set_flashdata('updated_profile_successful', TRUE);
+                $data['main_content'] = 'profile';
+            	$this->load->view('template', $data);
+			}
+		}
+        else
+		{
+			redirect('trackmacros/login');
+		}
+	}
+	
+	public function foods()
 	{
         if( $this->session->userdata('logged_in') )
         {   $data['main_content'] = 'foods';
@@ -61,27 +147,88 @@ class Trackmacros extends CI_Controller {
     public function addfoods()
 	{
 		if( $this->session->userdata('logged_in') )
+		{   $data['main_content'] = 'addfoods';
+        	$this->load->view('template', $data);
+		}
+		else
 		{
-			$this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|min_length[6]|xss_clean|valid_email');
-	        $this->form_validation->set_rules('body', 'body', 'xss_clean');
-			if( $this->session->userdata('logged_in') )
-	        {   $data['main_content'] = 'addfoods';
-	        	$this->load->view('template', $data);
-	        }
-			else
+			redirect('trackmacros/login');
+		}
+	}	
+
+	public function addfoodform()
+	{
+		if( $this->session->userdata('logged_in') )
+		{
+			$this->form_validation->set_rules('brand', 'Brand', 'trim|required|min_length[2]|xss_clean');
+			$this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[2]|xss_clean');
+	        $this->form_validation->set_rules('amount', 'Amount', 'trim|required|numeric');
+	        $this->form_validation->set_rules('units', 'Units', 'trim|required');
+	        $this->form_validation->set_rules('calories', 'Calories', 'trim|required|numeric');
+	        $this->form_validation->set_rules('sodium', 'Sodium', 'trim|required|numeric');
+	        $this->form_validation->set_rules('totalfat', 'Total Fat', 'trim|required|numeric');
+	        $this->form_validation->set_rules('potassium', 'Potassium', 'trim|required|numeric');
+	        $this->form_validation->set_rules('saturated', 'Saturated', 'trim|required|numeric');
+	        $this->form_validation->set_rules('carbs', 'Total Carbs', 'trim|required|numeric');
+	        $this->form_validation->set_rules('polyunsaturated', 'Polyunsaturated', 'trim|required|numeric');
+	        $this->form_validation->set_rules('fiber', 'Dietary Fiber', 'trim|required|numeric');
+	        $this->form_validation->set_rules('monounsaturated', 'Monounsaturated', 'trim|required|numeric');
+	        $this->form_validation->set_rules('sugars', 'Sugars', 'trim|required|numeric');
+	        $this->form_validation->set_rules('trans', 'Trans', 'trim|required|numeric');
+	        $this->form_validation->set_rules('protein', 'Protein', 'trim|required|numeric');
+	        $this->form_validation->set_rules('cholesterol', 'Cholesterol', 'trim|required|numeric');
+	        $this->form_validation->set_rules('vitamin_a', 'Vitamin A', 'trim|required|numeric');
+	        $this->form_validation->set_rules('calcium', 'Calcium', 'trim|required|numeric');
+	        $this->form_validation->set_rules('vitamin_c', 'Vitamin C', 'trim|required|numeric');
+	        $this->form_validation->set_rules('iron', 'Iron', 'trim|required|numeric');
+	        
+	        
+	        if( $this->form_validation->run() == FALSE )
 	        {
-	            // everything is good - process the input and login the user
-	            extract($_POST);
-	          
-	        /*    $query = $this->User_model->check_login($username, $password);
+	            // hasn't been run or there are validation errors
+	            $data['main_content'] = 'addfoods';
+	            $this->load->view('template', $data);
+	        }
+	        else
+	        {
+	            // everything is good - process the form - write the data into the db
+	        	$this->Food_model->add_food($_POST);
+	        }	
+		}
+	    else
+		{
+			redirect('trackmacros/login');
+		}		
+	}
 	
-	            if( $query->num_rows() <= 0 )
-	            {
-	                //login failed
-	                $this->session->set_flashdata('login_error_incorrect', TRUE);
-	                redirect('trackmacros/login');
-	            }
-	        */
+	
+	public function addfooditem()
+	{
+		if( $this->session->userdata('logged_in') )
+		{
+			extract($_POST);
+	        $this->form_validation->set_rules('brand', 'Brand', 'trim|required|min_length[2]|xss_clean');
+	        $this->form_validation->set_rules('amount', 'Amount', 'trim|required|numeric');
+	        $this->form_validation->set_rules('units', 'Units', 'trim|required');
+	        
+	        if( $this->form_validation->run() == FALSE )
+	        {
+	            // hasn't been run or there are validation errors
+	            $data['main_content'] = 'addfoods';
+	            $this->load->view('template', $data);
+	        }
+	        else
+	        {
+	            // everything is good - process the form - write the data into the db
+	            extract($_POST);
+	    		$food_id = $this->Food_model->get_food_branddesc($brand);
+	    		
+	    		if( $food_id != 0 )
+	    		{
+	    			$fields = array($this->session->userdata('id'), $food_id, $amount, $units, date('Y-m-d'));	
+	    		}
+	            
+				$this->Dailyfood_model->add_food_item($fields);
 	        }
 
 		}
@@ -91,7 +238,15 @@ class Trackmacros extends CI_Controller {
 		}		
 	}
 	
-    public function weight()
+    public function deletefooditem()
+	{
+		if( $this->session->userdata('logged_in') )
+		{
+			$this->Dailyfood_model->delete_food_item();
+		}
+	}
+	
+	public function weight()
 	{
         if( $this->session->userdata('logged_in') )
         {   $data['main_content'] = 'weight';
@@ -158,7 +313,9 @@ class Trackmacros extends CI_Controller {
                 $this->session->set_userdata( array(
                                 'logged_in' => TRUE, 
                                 'id' => $row->id,
+                				'username' => $row->username,
                 				'name' => $row->name,
+                				'email_address' => $row->email_address,
                 				'activated' => $row->activated ) );
 
                redirect('');
@@ -248,7 +405,7 @@ class Trackmacros extends CI_Controller {
     public function register()
     {
         $this->form_validation->set_rules('username', 'Username', 'trim|required|alpha_numberic|min_length[6]|xss_clean|strtolower|callback_username_not_exists');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|xss_clean');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|xss_clean|matches[password_confirm]');
         $this->form_validation->set_rules('password_confirm', 'Confirm Password', 'trim|required|min_length[6]|xss_clean');
         $this->form_validation->set_rules('name', 'Name', 'trim|required|min_length[6]|max_length[125]|xss_clean');
         $this->form_validation->set_rules('email_address', 'Email Address', 'trim|required|min_length[6]|xss_clean|valid_email');
