@@ -26,6 +26,26 @@
 			  echo '</script>';
         }
         
+        if( strcmp( $page, 'foods' ) == 0 )
+        {
+        	  echo "<script type=\"text/javascript\" language=\"javascript\">\n";
+			  echo "function hideFood() {\n";
+			  echo "	document.getElementById('textblock_div').style.display='none';\n";
+			  echo "}\n";
+			  echo "function showFood() {\n";
+			  echo "	var index = document.getElementById(\"choosefood\").selectedIndex;\n";
+			  echo "	var temp = document.getElementById(\"choosefood\").options[index].text;\n";
+			  echo "	var baseURL = \"http://trackmacros.com/trackmacros/foods/\" + temp;\n";
+			  echo "    top.location.href = baseURL;";
+			  echo "    return true;";
+			 // echo "	if( temp != \"Choose Food...\")";
+			 // echo "	{	brand.value = temp;\n";
+			 // echo "		document.getElementById('textblock_div').style.display='inline';\n";
+			//  echo "	}";
+			  echo "}\n";			  
+			  echo "</script>\n";     
+		}
+	    
         if( strcmp( $page, 'addfoods' ) != 0 )
         {
 			  echo '	<link rel="stylesheet" href="http://www.trackmacros.com/css/tmforms.css" type="text/css" />';
@@ -33,16 +53,6 @@
 		else
         {
 			  echo '	<link rel="stylesheet" href="http://www.trackmacros.com/css/addfoods.css" type="text/css" />';
-			  echo "\n";
-        	  echo "<script>\n";
-			  echo "function calculate() {\n";
-			  echo "	var calories = document.addfoodform.calories;\n";
-			  echo "	var totalfat = document.addfoodform.totalfat;\n";
-			  echo "	var totalcarbs = document.addfoodform.totalcarbs;\n";
-			  echo "	var protein = document.addfoodform.protein;\n";
-			  echo "	calories.value = totalfat.value*9 + totalcarbs.value*4 + protein.value*4;\n";
-			  echo "}\n";
-			  echo "</script>\n";
-        }
+		}
 		
         ?>
