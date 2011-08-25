@@ -1,5 +1,4 @@
 	<div id="content" class="body">
-    	<h2>My Profile</h2>
     <?php
 
         echo form_open('trackmacros/update_profile');
@@ -20,16 +19,12 @@
     <ul>
         <li>
         <label>Username</label>
-        <div>
-        <h3><?php echo $this->session->userdata('username'); ?></h3>
-        </div>
+        <div class="colortext"><?php echo $this->session->userdata('username'); ?></div>
         </li>
 
         <li>
         <label>Password</label>
-        <div>
-        <?php echo "<a class=\"orange\" href=\"changepassword\"/>Change Password</a>"; ?>
-        </div>
+        <div><?php echo "<a class=\"colorlink\" href=\"changepassword\"/>Change Password</a>"; ?></div>
         </li>
 
         <li>
