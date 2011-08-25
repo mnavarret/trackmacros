@@ -23,16 +23,22 @@ body {
 a {
 	color: #FFFFFF;
 }
-
-a.orange{
+.colortext{
 		font-size: 1.429em;
 		color: #0072bc;
 		font-weight: 400;
 		text-decoration: none;
 		line-height: 1.1;
-		margin-bottom: .8em;
 }
-a.orange:hover{
+
+a.colorlink{
+		font-size: 1.429em;
+		color: #0072bc;
+		font-weight: 400;
+		text-decoration: none;
+		line-height: 1.1;
+}
+a.colorlink:hover{
 	text-decoration: underline;
 }
 
