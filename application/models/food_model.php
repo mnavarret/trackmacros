@@ -36,22 +36,21 @@ class Food_model extends CI_Model {
     {
             	            		
         $query_str = "SELECT id, brand, description 
-        			  FROM tbl_food 
-        			  WHERE user_id = ?";
+        			  FROM tbl_food";
 
-        return $this->db->query( $query_str, $this->session->userdata('id') );
+        return $this->db->query( $query_str );
 
     }
     
-    function get_food_by_id()
+    function get_food_from_dropdown()
     {
             	            		
         $query_str = "SELECT id, brand, description, amount, protein, carbs, totalfat, calories 
         			  FROM tbl_food 
-        			  WHERE concat_ws(' ',brand,description) = ? AND user_id = ?";
+        			  WHERE concat_ws(' ',brand,description) = ?";
         $search = str_replace("%20", " ", $this->uri->segment(3));
 			
-        return $this->db->query( $query_str, array($search,$this->session->userdata('id')) );
+        return $this->db->query( $query_str, $search );
 
     }
     
