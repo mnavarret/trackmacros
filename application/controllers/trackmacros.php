@@ -160,9 +160,10 @@ class Trackmacros extends CI_Controller {
 	{
 		if( $this->session->userdata('logged_in') )
 		{
-			$this->form_validation->set_rules('brand', 'Brand', 'trim|required|min_length[2]|xss_clean');
-			$this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[2]|xss_clean');
-	        $this->form_validation->set_rules('amount', 'Amount', 'trim|required|numeric');
+			$this->form_validation->set_rules('brand', 'Brand', 'trim|required|min_length[2]|xss_clean|valid_food');
+			$this->form_validation->set_rules('description', 'Description', 'trim|required|min_length[2]|xss_clean|valid_food');
+	        $this->form_validation->set_message('valid_food', 'The %s field cannot contain \'-\' or \'/\' characters.');
+			$this->form_validation->set_rules('amount', 'Amount', 'trim|required|numeric');
 	        $this->form_validation->set_rules('units', 'Units', 'trim|required');
 	        $this->form_validation->set_rules('calories', 'Calories', 'trim|required|numeric');
 	        $this->form_validation->set_rules('sodium', 'Sodium', 'trim|required|numeric');
