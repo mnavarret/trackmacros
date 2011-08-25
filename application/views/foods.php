@@ -183,7 +183,7 @@
 	if( $this->uri->segment(3) != "" && strstr($this->uri->segment(3),"-") == FALSE )
 	{
 		echo '<div id="textblock_div" style="display:inline" >';
-		$result = $this->Food_model->get_food_by_id();
+		$result = $this->Food_model->get_food_from_dropdown();
 		$num = $result->num_rows();
 
 	    if ($num == 1) 
