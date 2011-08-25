@@ -6,9 +6,9 @@ class MY_Form_validation extends CI_Form_validation {
 		parent::__construct();
 	}
 	
-	public function valid_date($str) {
-	    	
-	    if (ereg("([0-9]{1,2})/([0-9]{1,2})/([0-9]{4})", $str)) 
+	public function valid_date($str) 
+	{
+	    if(ereg("([0-9]{1,2})/([0-9]{1,2})/([0-9]{4})", $str)) 
 	    {
 	        $arr = split("/", $str);
 	        $mm = $arr[0];
@@ -28,6 +28,19 @@ class MY_Form_validation extends CI_Form_validation {
 	    {
 	        return false;
 	    }
-	}  
+	}
+
+	public function valid_food($str) 
+	{
+	    if( strpos($str, "-") != FALSE ||
+	    	strpos($str, "/" ) != FALSE ) 
+	    {
+	        return FALSE;
+	    } 
+	    else 
+	    {
+	        return TRUE;
+	    }
+	} 
 }
 ?>
